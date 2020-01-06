@@ -10,6 +10,7 @@
     "bitbox-sdk": "^8.11.1",
     "bitcoincashjs-lib": "Bitcoin-com/bitcoincashjs-lib#v4.0.1",
     "cashscript": "^0.3.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "cramer-bch": "git+https://github.com/jcramer/bitcoincashjs-lib.git#0c24341e7e3b877dd447672bdefe2200fa2be82f"
   }
 }
