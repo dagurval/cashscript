@@ -15,9 +15,17 @@ contract Mecenas(bytes20 recipient, bytes20 funder, int pledge/*, int period*/) 
         int fee = 1000;
 
         if (int(bytes(tx.value)) <= pledge + fee) {
+            /* The contract has less value than the pledge, or equal.
+             * The recipient must claim all of of it. */
+
             bytes34 out1 = new OutputP2PKH(tx.value, recipient);
             require(hash256(out1) == tx.hashOutputs);
         } else {
+            /* The contract has more value than the pledge. The recipient must
+             * also add one change output sending the remaining coins back
+             * to the contract.
+             */
+
             bytes8 amount1 = bytes8(pledge);
             bytes8 amount2 = bytes8(int(bytes(tx.value)) - pledge - fee);
             bytes34 out1 = new OutputP2PKH(amount1, recipient);
