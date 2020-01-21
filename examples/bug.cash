@@ -1,0 +1,12 @@
+pragma cashscript ^0.3.0;
+
+contract Bug(bytes20 a) {
+    function yum() {
+        require(0xbeef == 0xf00d || 0xf00d == 0xf00d);
+
+        int dust = 546;
+        bytes8 amount = bytes8(dust);
+        bytes34 out = OutputP2PKH(amount, a);
+        require(hash256(out) == tx.hashOutputs);
+    }
+}
