@@ -1,8 +1,9 @@
 pragma cashscript ^0.3.0;
 
 contract Bug(bytes20 a) {
-    function yum() {
+    function yum(pubkey pk, sig s) {
         require(0xbeef == 0xf00d || 0xf00d == 0xf00d);
+        require(checkSig(s, pk));
 
         int dust = 546;
         bytes8 amount = bytes8(dust);
